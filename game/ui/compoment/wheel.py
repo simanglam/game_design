@@ -1,5 +1,6 @@
+from random import randint
+
 from pygame.rect import Rect
-from pygame.draw import circle, line
 from pygame.surface import Surface
 from pygame.font import Font, SysFont
 
@@ -29,17 +30,29 @@ class Wheel:
         self.rect.center = (x, y)
         
         self.windowRect: Rect = self.surface.get_rect().move(0, 0)
-        self.isRotating: bool = True
+        self.isRotating: bool = False
         self.accumulator: int = 0
-        self.targetDistance: int = self.rect.height * 301
+        self.targetDistance: int = self.rect.height * 300
+        
+        self.currentOffset = 0
         
     def update(self, deltaT: int):
         if not self.isRotating:
             return
         
         self.accumulator += deltaT
-        self.windowRect.top = ease_out_back(self.accumulator / 10000) * self.targetDistance
+        ratio = ease_out_back(self.accumulator / 10000)
+        self.windowRect.top = ratio * self.targetDistance + self.currentOffset
         self.windowRect.top %= self.stringRects[self.len - 1].top
+        if self.accumulator / 10000 >= 1:
+            self.isRotating = False
+            self.currentOffset = self.windowRect.top
+        
+    def startRotating(self):
+        self.isRotating = True
+        self.accumulator = 0
+        self.targetDistance = self.rect.height * (45 + randint(0, self.len - 2)) + self.currentOffset
+        
         
     def draw(self, surface: Surface) -> None:
         self.surface.fill((255, 255, 255))

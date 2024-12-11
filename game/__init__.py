@@ -22,8 +22,9 @@ class Game:
             if keys[pg.K_ESCAPE]:
                 self.running = False
             
+            pg.event.get()
             self.screen.fill((255,) * 3)
-            self.scene.update(clock.get_time(), pg.event.get())
+            self.scene.update(clock.get_time())
             self.scene.render(self.screen)
             pg.display.update()
         pg.quit()
