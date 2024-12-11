@@ -8,7 +8,7 @@ from ...util import smooth, ease_in_out_back, ease_out_back
 
 class Wheel:
     def __init__(self, x: float = 0, y: float = 0, inputStr: list[str] = ["食凡", "食凡媽媽", "姐妹火鍋"]):
-        self.font: Font = SysFont("wt004", 128)
+        self.font: Font = Font("assets/wt004.ttf", 128)
         self.stringRects: list[Rect] = []
         self.stringSurfaces: list[Surface] = []
         self.len: int = len(inputStr)

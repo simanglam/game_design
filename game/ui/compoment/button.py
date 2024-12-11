@@ -4,13 +4,13 @@ from collections.abc import Callable
 
 from pygame.rect import Rect
 from pygame.surface import Surface
-from pygame.font import Font, SysFont
+from pygame.font import Font, SysFont, get_fonts
 
 from ...util import smooth, ease_in_out_back, ease_out_back
 
 class Button:
     def __init__(self, label: str, x: float = 0, y: float = 0):
-        self.font: Font = SysFont("wt004", 96)
+        self.font: Font = Font("assets/wt004.ttf", 128)
         self.label = self.font.render(label, True, (0, 0, 0, 255))
             
         self.rect: Rect = self.label.get_rect()

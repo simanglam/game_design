@@ -1,4 +1,5 @@
+import asyncio
 from game import Game
 
 app = Game()
-app.run()
+asyncio.run(app.run())

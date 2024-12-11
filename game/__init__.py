@@ -1,4 +1,5 @@
 import pygame as pg
+import asyncio
 from .scene.Scene import Scene
 from .scene.RotateScene import RotateScene
 
@@ -8,10 +9,10 @@ pg.init()
 class Game:
     def __init__(self):
         self.scene: Scene = RotateScene(self)
-        self.screen: pg.Surface = pg.display.set_mode((1920, 1080), pg.FULLSCREEN, display = 0, vsync = 1)
+        self.screen: pg.Surface = pg.display.set_mode((1920, 1080))
         self.running: bool = True
 
-    def run(self):
+    async def run(self):
         clock = pg.time.Clock()
         while self.running:
             clock.tick(60)
@@ -27,5 +28,6 @@ class Game:
             self.scene.update(clock.get_time())
             self.scene.render(self.screen)
             pg.display.update()
+            await asyncio.sleep(0)
         pg.quit()
         
