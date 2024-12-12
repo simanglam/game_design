@@ -8,7 +8,8 @@ pg.init()
 
 class Game:
     def __init__(self):
-        self.scene: Scene = RotateScene(self)
+        self.rotateScene: Scene = RotateScene(self)
+        self.scene: Scene = self.rotateScene
         self.screen: pg.Surface = pg.display.set_mode((1920, 1080))
         self.running: bool = True
 

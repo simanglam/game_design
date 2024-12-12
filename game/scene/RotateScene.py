@@ -17,7 +17,7 @@ class RotateScene(Scene):
         self.game = game
         self.rotationAngle: float = 0
         self.accumelator: int = 0
-        self.wheel: Wheel = Wheel(1920 / 2, 1080 / 2)
+        self.wheel: Wheel = Wheel(1920 / 2, 1080 / 2, None, game)
         self.rotateButton: Button = Button("GO!", self.wheel.rect.centerx, self.wheel.rect.bottom + 100).setCallBack(self.wheel.startRotating)
     
     def update(self, deltaT: int) -> None:

@@ -1,25 +1,29 @@
 from random import randint
+import json
 
 from pygame.rect import Rect
 from pygame.surface import Surface
 from pygame.font import Font, SysFont
 
+from ...scene.ResultScene import ResultScene
+
 from ...util import smooth, ease_in_out_back, ease_out_back
 
 class Wheel:
-    def __init__(self, x: float = 0, y: float = 0, inputStr: list[str] = ["食凡", "食凡媽媽", "姐妹火鍋"]):
+    def __init__(self, x: float = 0, y: float = 0, inputStr: list[str] = ["食凡", "食凡媽媽", "姐妹火鍋"], game = None):
+        self.jsonConfig: list[dict[str, str]] = json.loads(open("assets/data.json").read())
         self.font: Font = Font("assets/wt004.ttf", 128)
         self.stringRects: list[Rect] = []
         self.stringSurfaces: list[Surface] = []
-        self.len: int = len(inputStr)
+        self.len: int = len(self.jsonConfig)
         
         for i in range(0, self.len):
-            self.stringSurfaces.append(self.font.render(inputStr[i], 0, (0, 0, 0, 255)))
+            self.stringSurfaces.append(self.font.render(self.jsonConfig[i]["name"], 0, (0, 0, 0, 255)))
             stringRect = self.stringSurfaces[i].get_rect().move(0, self.stringSurfaces[i].get_height() * i)
             stringRect.centerx = 320
             self.stringRects.append(stringRect)
         
-        self.stringSurfaces.append(self.font.render(inputStr[0], 0, (0, 0, 0, 255)))
+        self.stringSurfaces.append(self.font.render(self.jsonConfig[0]["name"], 0, (0, 0, 0, 255)))
         stringRect = self.stringSurfaces[0].get_rect().move(0, self.stringSurfaces[0].get_height() * self.len)
         stringRect.centerx = 320
         self.stringRects.append(stringRect)
@@ -36,6 +40,8 @@ class Wheel:
         
         self.currentOffset = 0
         
+        self.game = game
+        
     def update(self, deltaT: int):
         if not self.isRotating:
             return
@@ -47,6 +53,8 @@ class Wheel:
         if self.accumulator / 10000 >= 1:
             self.isRotating = False
             self.currentOffset = self.windowRect.top
+            self.game.scene = ResultScene(self.game, self.jsonConfig[self.windowRect.top // self.stringRects[0].height])
+                
         
     def startRotating(self):
         self.isRotating = True
