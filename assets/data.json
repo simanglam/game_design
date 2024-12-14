@@ -1,7 +1,74 @@
 [
     {
+        "name": "十畝田",
+        "type": "hell"
+    },
+    {
+        "name": "市場羊肉",
+        "type": "heaven"
+    },
+    {
+        "name": "全家",
+        "type": "heaven"
+    },
+    {
+        "name": "花亭壽司",
+        "type": "heaven"
+    },
+    {
+        "name": "紅樓",
+        "type": "heaven"
+    },
+    {
+        "name": "風信子美食坊",
+        "type": "hell"
+    },
+    {
         "name": "食凡",
-        "reviewText": "我不知道",
+        "type": "hell"
+    },
+    {
+        "name": "財哥",
+        "type": "heaven"
+    },
+    {
+        "name": "婆媳",
+        "type": "hell"
+    },
+    {
+        "name": "絕佳食雞",
+        "type": "heaven"
+    },
+    {
+        "name": "陽光你好",
+        "type": "hell"
+    },
+    {
+        "name": "農閒時刻",
+        "type": "heaven"
+    },
+    {
+        "name": "鼎炒食堂",
+        "type": "heaven"
+    },
+    {
+        "name": "瘋Beef",
+        "type": "heaven"
+    },
+    {
+        "name": "蔬芙",
+        "type": "heaven"
+    },
+    {
+        "name": "魯都香",
+        "type": "heaven"
+    },
+    {
+        "name": "鮮茶道",
+        "type": "hell"
+    },
+    {
+        "name": "懷念鹽酥雞",
         "type": "hell"
     }
 ]

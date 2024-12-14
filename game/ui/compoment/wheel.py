@@ -1,6 +1,7 @@
 from random import randint
 import json
 
+from pygame import SRCALPHA
 from pygame.rect import Rect
 from pygame.surface import Surface
 from pygame.font import Font, SysFont
@@ -29,7 +30,7 @@ class Wheel:
         self.stringRects.append(stringRect)
         self.len += 1
             
-        self.surface: Surface = Surface((640, self.stringSurfaces[0].get_height()))
+        self.surface: Surface = Surface((640, self.stringSurfaces[0].get_height()), SRCALPHA)
         self.rect: Rect = self.surface.get_rect()
         self.rect.center = (x, y)
         
@@ -63,7 +64,7 @@ class Wheel:
         
         
     def draw(self, surface: Surface) -> None:
-        self.surface.fill((255, 255, 255))
+        self.surface.fill((255, 255, 255, 0))
         
         for i in range(0, self.len):
             if self.windowRect.colliderect(self.stringRects[i]):
